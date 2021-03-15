@@ -108,12 +108,20 @@ def strip_output(arr: List[str]) -> List[str]:
 
 
 if __name__ == '__main__':
+    usage_info = """\nUsage: word_searcher.py N M PATH_TO_FILE
+    where:
+    N and M - board dimension
+    PATH_TO_FILE - path to dictionary file"""
+
     if len(sys.argv) < 4:
-        sys.exit("Insufficient number of arguments")
+        sys.exit("Insufficient number of arguments" + usage_info)
     else:
-        n = int(sys.argv[1])
-        m = int(sys.argv[2])
-        words_path = sys.argv[3]
+        try:
+            n = int(sys.argv[1])
+            m = int(sys.argv[2])
+            words_path = sys.argv[3]
+        except ValueError as e:
+            sys.exit("Wrong argument type." + usage_info)
 
     game_board = generate_board(n, m)
     print("Generated board:")
