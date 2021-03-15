@@ -15,8 +15,8 @@ class WordSearcherTest(unittest.TestCase):
     def test_word_searcher(self):
         board = [['a', 'c'], ['b', 'd']]
         expected_words = ['ab', 'a']
-        root = TrieNode()
 
+        root = TrieNode()
         insert_word(root, 'ab')
         insert_word(root, 'a')
 

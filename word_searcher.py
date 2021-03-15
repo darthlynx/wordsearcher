@@ -99,6 +99,14 @@ def prepare_dictionary(file_name: str, root: TrieNode):
             insert_word(root, line)
 
 
+def strip_output(arr: List[str]) -> List[str]:
+    """Truncate trailing new line character in list elements"""
+    stripped_words = []
+    for w in arr:
+        stripped_words.append(w.strip())
+    return stripped_words
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 4:
         sys.exit("Insufficient number of arguments")
@@ -109,11 +117,13 @@ if __name__ == '__main__':
 
     game_board = generate_board(n, m)
     print("Generated board:")
-    print(game_board)
+    for ar in game_board:
+        print(ar)
 
     root_node = TrieNode()
     prepare_dictionary(words_path, root_node)
 
     searcher = WordSearcher()
     print("Found words:")
-    print(searcher.find_words(game_board, root_node))
+    found_words = strip_output(searcher.find_words(game_board, root_node))
+    print(found_words)
