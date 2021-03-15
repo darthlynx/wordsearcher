@@ -108,10 +108,12 @@ if __name__ == '__main__':
         words_path = sys.argv[3]
 
     game_board = generate_board(n, m)
+    print("Generated board:")
     print(game_board)
 
     root_node = TrieNode()
     prepare_dictionary(words_path, root_node)
 
     searcher = WordSearcher()
+    print("Found words:")
     print(searcher.find_words(game_board, root_node))
