@@ -1,5 +1,6 @@
 import random
 import string
+import sys
 from typing import List
 
 
@@ -99,11 +100,18 @@ def prepare_dictionary(file_name: str, root: TrieNode):
 
 
 if __name__ == '__main__':
-    searcher = WordSearcher()
-    game_board = generate_board(5, 5)
+    if len(sys.argv) < 4:
+        sys.exit("Insufficient number of arguments")
+    else:
+        n = int(sys.argv[1])
+        m = int(sys.argv[2])
+        words_path = sys.argv[3]
+
+    game_board = generate_board(n, m)
     print(game_board)
 
     root_node = TrieNode()
-    prepare_dictionary("words.txt", root_node)
+    prepare_dictionary(words_path, root_node)
 
+    searcher = WordSearcher()
     print(searcher.find_words(game_board, root_node))
